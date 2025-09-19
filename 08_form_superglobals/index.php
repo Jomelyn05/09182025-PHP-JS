@@ -1,16 +1,8 @@
 <?php
-    
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = filter_input(INPUT_POST,"name",FILTER_SANITIZE_SPECIAL_CHARS);
-        $email = filter_input(INPUT_POST,"email",FILTER_VALIDATE_EMAIL);
-        $phone = filter_input(INPUT_POST,"phone",FILTER_SANITIZE_NUMBER_INT);
 
-        if($name && $email && $phone) {
-            echo "Contact Added:  $name ($email, $phone) ";
-    }else {
-        echo "Invalid input!";
-    }
-}
+    $contactsFile = "contacts.json";
+    $contacts = file_exists($contactsFile)? json_decode(file_get_contents
+    ($contactsFile), true) : [] ;
 ?>
 
 <!DOCTYPE html>
@@ -21,26 +13,16 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="POST">
-        <label>Name:</label>
-            <input type="text" name="name" required>
-        <br>
+    <a href="create.php">Create New Contact</a>
 
-        <label>Email:</label>
-            <input type="email" name="email" required>
-        <br>
-
-        <label>Phone:</label>
-            <input type="text" number="number" required>
-        <br>
-
-        <label>Contact Image:</label>
-            <input type+="file" name="image"
-            accept="image/*" required>
-        <br>
-
-        <button type="submit">Add Contact</button>
-        <br>
-    </form>
+    <ul>
+            <?php foreach ($contacts as $contact): ?>
+                <li>
+                    <img src="<?php echo $contact['image']; ?>" height="50">
+                    <?php echo "{$contact['name']} - {$contact['email']} - {$contact['phone']} "; ?>
+                <a href="delete.php?id=<?php echo $contact['id'] ?>"> Delete</a>
+                </li>
+            <?php endforeach ?>
+    </ul>
 </body>
 </html>
