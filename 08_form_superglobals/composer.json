@@ -1,0 +1,15 @@
+{
+    "name": "don/09182025-php-js",
+    "autoload": {
+        "psr-4": {
+            "Don\\09182025PhpJs\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "senku-1",
+            "email": "ojtdevai@comfac-it.com"
+        }
+    ],
+    "require": {}
+}

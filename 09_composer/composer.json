@@ -1,0 +1,17 @@
+{
+    "name": "don/09_composer",
+    "autoload": {
+        "psr-4": {
+            "Don\\Testing\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "senku-1",
+            "email": "ojtdevai@comfac-it.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.10"
+    }
+}
